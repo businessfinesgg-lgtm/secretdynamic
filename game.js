@@ -47,8 +47,8 @@ const CONFIG = {
   car: {
     bodyWidth: 236,
     bodyHeight: 72,
-    rearWheelX: -82,
-    frontWheelX: 84,
+    rearWheelX: -65,
+    frontWheelX: 75,
     wheelY: -20,
     wheelSize: 52,
     wheelRadius: 23,
