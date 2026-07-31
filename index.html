@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Dzień z życia Warszawiaka</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="game-shell" id="gameShell">
+    <canvas id="game" aria-label="Dzień z życia Warszawiaka"></canvas>
+
+    <section class="vehicle-status glass-panel" aria-label="Stan pojazdu">
+      <article class="status-item fuel-card">
+        <div class="status-icon">⛽</div>
+        <div class="status-copy"><span>PALIWO</span><b id="fuelText">100%</b><div class="meter"><i id="fuelBar"></i></div></div>
+      </article>
+      <article class="status-item health-card">
+        <div class="status-icon">🛡️</div>
+        <div class="status-copy"><span>STAN AUTA</span><b id="healthText">100%</b><div class="meter health"><i id="healthBar"></i></div></div>
+      </article>
+      <article class="bonus-card">
+        <span>BONUS</span><strong id="effect">BRAK</strong>
+      </article>
+    </section>
+
+    <section class="score-panel glass-panel" aria-label="Wynik">
+      <span class="score-label">PUNKTY</span>
+      <strong id="score">0</strong>
+      <div class="record-line"><span>REKORD</span><b id="record">0</b></div>
+      <div class="score-grid">
+        <div><span>DYSTANS</span><b id="distance">0 m</b></div>
+        <div><span>MONETY</span><b id="coins">0</b></div>
+        <div><span>POZIOM</span><b id="level">1</b></div>
+      </div>
+    </section>
+
+    <section class="weather-announcement" id="weatherAnnouncement" aria-live="polite" aria-atomic="true">
+      <div class="weather-announcement-icon" id="weatherAnnouncementIcon">🌧️</div>
+      <div class="weather-announcement-copy">
+        <strong id="weatherAnnouncementName">DESZCZ</strong>
+        <span id="weatherAnnouncementEffect">Przyczepność -6%</span>
+      </div>
+    </section>
+
+    <section class="weather-status" id="weatherStatus" aria-label="Aktualna pogoda">
+      <span id="weatherStatusIcon">🌧️</span>
+      <div><b id="weatherStatusName">DESZCZ</b><i><em id="weatherStatusBar"></em></i></div>
+    </section>
+
+    <section class="speedometer" aria-label="Prędkościomierz">
+      <div class="speed-ring" id="speedArc">
+        <canvas class="nitro-gauge" id="nitroGauge" aria-hidden="true"></canvas>
+        <div class="speed-digital"><strong id="speed">0</strong><span>km/h</span></div><small id="speedMode">LIMIT</small>
+      </div>
+    </section>
+
+
+    <button class="audio-toggle" id="audioToggle" type="button" aria-label="Wycisz dźwięki" aria-pressed="false">🔊</button>
+
+    <section class="active-effects" id="activeEffects" aria-label="Aktywne moce" aria-live="polite"></section>
+
+    <section class="pedal-panel" aria-label="Pedały">
+      <div class="pedal brake-pedal" id="brakePedal"><i></i><small>S</small><span>HAMULEC</span></div>
+      <div class="pedal gas-pedal" id="gasPedal"><i></i><small>W</small><span>GAZ</span></div>
+    </section>
+
+    <section class="slot-panel hidden" id="slotPanel" aria-label="Losowanie przedmiotu">
+      <div class="slot-header"><span>LOOT ROLL</span><strong id="slotCountdown">LOSOWANIE</strong></div>
+      <div class="slot-window" id="slotWindow"><div class="slot-track" id="slotTrack"></div><div class="slot-marker"></div></div>
+      <div class="slot-result" id="slotResult"></div>
+    </section>
+
+    <section class="overlay" id="startScreen">
+      <div class="menu-card hero-card">
+        <div class="hero-badge">ARCADE • WARSZAWA • LOOT ROLL</div>
+        <div class="hero-title"><span>DZIEŃ Z ŻYCIA</span><strong>WARSZAWIAKA</strong></div>
+        <p class="hero-copy">Rozpędź auto, kontroluj lot i walcz o rekord. Zbieraj paliwo, monety oraz kasynka, a nitro wykorzystuj na trudniejszych odcinkach.</p>
+        <div class="feature-grid"><div><b>W</b><span>GAZ</span></div><div><b>S</b><span>HAMULEC</span></div><div><b>A / D</b><span>OBRÓT</span></div><div><b>SPACJA</b><span>NITRO</span></div></div>
+        <div class="start-row"><span>R — szybki restart</span><button id="startBtn">ROZPOCZNIJ JAZDĘ</button></div>
+      </div>
+    </section>
+
+    <section class="overlay hidden" id="gameOverScreen">
+      <div class="game-over-card glass-panel">
+        <header class="game-over-head">
+          <div><span class="game-over-kicker">KONIEC PRZEJAZDU</span><h2 id="gameOverReason">Auto zostało zniszczone</h2></div>
+          <div class="game-over-badge">WARSZAWA<br><b>ARCADE</b></div>
+        </header>
+        <div class="final-score"><span>TWÓJ WYNIK</span><strong id="finalScore">0</strong></div>
+        <div class="final-stats">
+          <article><span>DYSTANS</span><b id="finalDistance">0 m</b></article>
+          <article><span>MONETY</span><b id="finalCoins">0</b></article>
+          <article><span>POZIOM</span><b id="finalLevel">1</b></article>
+          <article><span>REKORD</span><b id="finalRecord">0</b></article>
+        </div>
+        <button id="restartBtn">ZAGRAJ PONOWNIE</button>
+      </div>
+    </section>
+
+    <div class="mobile-controls" aria-hidden="true"><button data-key="s">HAMULEC</button><button data-key=" ">BOOST</button><button data-key="w">GAZ</button></div>
+  </main>
+  <script src="game.js"></script>
+</body>
+</html>
